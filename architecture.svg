@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680" font-family="Segoe UI, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1000" height="680" fill="#0f172a" rx="16"/>
+
+  <!-- Title -->
+  <text x="500" y="42" text-anchor="middle" font-size="22" font-weight="bold" fill="#f1f5f9">SalesArena AI — System Architecture</text>
+  <text x="500" y="64" text-anchor="middle" font-size="13" fill="#94a3b8">Real-time AI Sales Coaching Platform</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ZONE: User -->
+  <rect x="30" y="88" width="180" height="240" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="120" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8" letter-spacing="1">USER</text>
+
+  <!-- Mic icon -->
+  <rect x="95" y="120" width="50" height="60" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="120" y="157" text-anchor="middle" font-size="22" fill="#a5b4fc">🎤</text>
+  <text x="120" y="196" text-anchor="middle" font-size="10" fill="#c7d2fe">Microphone</text>
+
+  <!-- Camera icon -->
+  <rect x="95" y="210" width="50" height="60" rx="8" fill="#134e4a" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="120" y="247" text-anchor="middle" font-size="22" fill="#5eead4">📷</text>
+  <text x="120" y="286" text-anchor="middle" font-size="10" fill="#99f6e4">Camera</text>
+
+  <!-- Arrow: User -> Frontend -->
+  <line x1="210" y1="210" x2="270" y2="210" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="270,206 278,210 270,214" fill="#475569"/>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ZONE: Frontend -->
+  <rect x="280" y="88" width="200" height="400" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <rect x="280" y="88" width="200" height="28" rx="12" fill="#1d4ed8"/>
+  <rect x="280" y="104" width="200" height="12" fill="#1d4ed8"/>
+  <text x="380" y="107" text-anchor="middle" font-size="11" font-weight="bold" fill="#bfdbfe" letter-spacing="1">FRONTEND</text>
+  <text x="380" y="122" text-anchor="middle" font-size="10" fill="#93c5fd">Next.js 16 · React 19 · TypeScript</text>
+  <text x="380" y="136" text-anchor="middle" font-size="10" fill="#93c5fd">Tailwind CSS · Framer Motion</text>
+
+  <!-- page.tsx -->
+  <rect x="298" y="150" width="164" height="46" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="380" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">page.tsx</text>
+  <text x="380" y="186" text-anchor="middle" font-size="10" fill="#60a5fa">Persona Selector · Arena UI</text>
+
+  <!-- useLiveAudio hook -->
+  <rect x="298" y="206" width="164" height="60" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="380" y="226" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">useLiveAudio.tsx</text>
+  <text x="380" y="241" text-anchor="middle" font-size="10" fill="#60a5fa">PCM Audio Capture 16kHz</text>
+  <text x="380" y="256" text-anchor="middle" font-size="10" fill="#60a5fa">JPEG Video @ 1fps</text>
+
+  <!-- WebSocket client -->
+  <rect x="298" y="278" width="164" height="46" rx="8" fill="#292524" stroke="#78716c" stroke-width="1"/>
+  <text x="380" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#d6d3d1">WebSocket Client</text>
+  <text x="380" y="314" text-anchor="middle" font-size="10" fill="#a8a29e">ws://localhost:8001</text>
+
+  <!-- Scorecard UI -->
+  <rect x="298" y="336" width="164" height="46" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="380" y="356" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Scorecard Modal</text>
+  <text x="380" y="372" text-anchor="middle" font-size="10" fill="#60a5fa">Metrics · Coach Feedback</text>
+
+  <!-- Feedback overlay -->
+  <rect x="298" y="392" width="164" height="46" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="380" y="412" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Feedback Overlay</text>
+  <text x="380" y="428" text-anchor="middle" font-size="10" fill="#60a5fa">Real-time Objection Alerts</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- WebSocket arrow: Frontend <-> Backend -->
+  <line x1="482" y1="290" x2="538" y2="290" stroke="#6366f1" stroke-width="2"/>
+  <polygon points="538,286 546,290 538,294" fill="#6366f1"/>
+  <polygon points="482,294 474,290 482,286" fill="#6366f1"/>
+  <text x="512" y="280" text-anchor="middle" font-size="9" fill="#818cf8">WebSocket</text>
+  <text x="512" y="308" text-anchor="middle" font-size="9" fill="#818cf8">Binary + JSON</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ZONE: Backend (Cloud Run) -->
+  <rect x="548" y="88" width="220" height="400" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <rect x="548" y="88" width="220" height="28" rx="12" fill="#166534"/>
+  <rect x="548" y="104" width="220" height="12" fill="#166534"/>
+  <text x="658" y="107" text-anchor="middle" font-size="11" font-weight="bold" fill="#bbf7d0" letter-spacing="1">BACKEND · GOOGLE CLOUD RUN</text>
+  <text x="658" y="122" text-anchor="middle" font-size="10" fill="#86efac">FastAPI · Python 3.11 · Uvicorn</text>
+  <text x="658" y="136" text-anchor="middle" font-size="10" fill="#86efac">Docker Container · Port 8001</text>
+
+  <!-- main.py -->
+  <rect x="566" y="150" width="184" height="46" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="658" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#86efac">main.py</text>
+  <text x="658" y="186" text-anchor="middle" font-size="10" fill="#4ade80">GET / · WS /ws/arena/{persona_id}</text>
+
+  <!-- agent.py -->
+  <rect x="566" y="206" width="184" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="658" y="226" text-anchor="middle" font-size="11" font-weight="bold" fill="#86efac">agent.py</text>
+  <text x="658" y="241" text-anchor="middle" font-size="10" fill="#4ade80">Gemini Live Session Manager</text>
+  <text x="658" y="256" text-anchor="middle" font-size="10" fill="#4ade80">Bidirectional Audio Stream</text>
+
+  <!-- personas.py -->
+  <rect x="566" y="278" width="84" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="608" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#86efac">personas.py</text>
+  <text x="608" y="313" text-anchor="middle" font-size="10" fill="#4ade80">Skeptic CTO</text>
+  <text x="608" y="326" text-anchor="middle" font-size="10" fill="#4ade80">CFO · Procurement</text>
+
+  <!-- tools.py -->
+  <rect x="660" y="278" width="90" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="705" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#86efac">tools.py</text>
+  <text x="705" y="313" text-anchor="middle" font-size="10" fill="#4ade80">detect_objection</text>
+  <text x="705" y="326" text-anchor="middle" font-size="10" fill="#4ade80">score_sales_skill</text>
+
+  <!-- Secret Manager -->
+  <rect x="566" y="352" width="184" height="46" rx="8" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1"/>
+  <text x="658" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#c4b5fd">Secret Manager</text>
+  <text x="658" y="388" text-anchor="middle" font-size="10" fill="#a78bfa">GEMINI_API_KEY (injected at runtime)</text>
+
+  <!-- tests -->
+  <rect x="566" y="408" width="184" height="40" rx="8" fill="#1c1917" stroke="#57534e" stroke-width="1"/>
+  <text x="658" y="426" text-anchor="middle" font-size="11" font-weight="bold" fill="#a8a29e">tests/ (pytest)</text>
+  <text x="658" y="440" text-anchor="middle" font-size="10" fill="#78716c">main · agent · personas · tools</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- Arrow: Backend -> Gemini -->
+  <line x1="770" y1="236" x2="826" y2="236" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="826,232 834,236 826,240" fill="#f59e0b"/>
+  <polygon points="770,240 762,236 770,232" fill="#f59e0b"/>
+  <text x="800" y="226" text-anchor="middle" font-size="9" fill="#fbbf24">gRPC / HTTPS</text>
+  <text x="800" y="252" text-anchor="middle" font-size="9" fill="#fbbf24">Streaming</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ZONE: Gemini -->
+  <rect x="836" y="160" width="138" height="260" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <rect x="836" y="160" width="138" height="28" rx="12" fill="#92400e"/>
+  <rect x="836" y="176" width="138" height="12" fill="#92400e"/>
+  <text x="905" y="179" text-anchor="middle" font-size="11" font-weight="bold" fill="#fef3c7" letter-spacing="1">GOOGLE AI</text>
+  <text x="905" y="193" text-anchor="middle" font-size="10" fill="#fde68a">Gemini 2.0 Flash Live</text>
+
+  <rect x="852" y="206" width="106" height="50" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+  <text x="905" y="228" text-anchor="middle" font-size="22">🤖</text>
+  <text x="905" y="248" text-anchor="middle" font-size="10" fill="#fcd34d">Live API</text>
+
+  <rect x="852" y="268" width="106" height="40" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+  <text x="905" y="285" text-anchor="middle" font-size="10" font-weight="bold" fill="#fcd34d">Audio In/Out</text>
+  <text x="905" y="300" text-anchor="middle" font-size="10" fill="#fbbf24">16kHz PCM stream</text>
+
+  <rect x="852" y="320" width="106" height="40" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+  <text x="905" y="337" text-anchor="middle" font-size="10" font-weight="bold" fill="#fcd34d">Vision Input</text>
+  <text x="905" y="352" text-anchor="middle" font-size="10" fill="#fbbf24">JPEG frames</text>
+
+  <rect x="852" y="372" width="106" height="38" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+  <text x="905" y="389" text-anchor="middle" font-size="10" font-weight="bold" fill="#fcd34d">Function Calling</text>
+  <text x="905" y="403" text-anchor="middle" font-size="10" fill="#fbbf24">Tool Responses</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ZONE: Infrastructure bottom row -->
+  <rect x="30" y="490" width="940" height="110" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="500" y="512" text-anchor="middle" font-size="11" font-weight="bold" fill="#94a3b8" letter-spacing="1">INFRASTRUCTURE &amp; DEPLOYMENT</text>
+
+  <!-- Docker -->
+  <rect x="50" y="522" width="120" height="60" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1"/>
+  <text x="110" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#93c5fd">Docker</text>
+  <text x="110" y="560" text-anchor="middle" font-size="10" fill="#60a5fa">python:3.11-slim</text>
+  <text x="110" y="574" text-anchor="middle" font-size="10" fill="#60a5fa">backend/Dockerfile</text>
+
+  <!-- Terraform -->
+  <rect x="185" y="522" width="120" height="60" rx="8" fill="#2e1065" stroke="#9333ea" stroke-width="1"/>
+  <text x="245" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#e9d5ff">Terraform</text>
+  <text x="245" y="560" text-anchor="middle" font-size="10" fill="#d8b4fe">Cloud Run · IAM</text>
+  <text x="245" y="574" text-anchor="middle" font-size="10" fill="#d8b4fe">infra/terraform/</text>
+
+  <!-- Cloud Build -->
+  <rect x="320" y="522" width="120" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="380" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#bbf7d0">Cloud Build</text>
+  <text x="380" y="560" text-anchor="middle" font-size="10" fill="#86efac">cloudbuild.yaml</text>
+  <text x="380" y="574" text-anchor="middle" font-size="10" fill="#86efac">GCR image push</text>
+
+  <!-- GitHub -->
+  <rect x="455" y="522" width="120" height="60" rx="8" fill="#1c1917" stroke="#78716c" stroke-width="1"/>
+  <text x="515" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#e7e5e4">GitHub</text>
+  <text x="515" y="560" text-anchor="middle" font-size="10" fill="#a8a29e">LightLLM/salesarenaai</text>
+  <text x="515" y="574" text-anchor="middle" font-size="10" fill="#a8a29e">master / main branch</text>
+
+  <!-- Cloud Run -->
+  <rect x="590" y="522" width="130" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="655" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#bbf7d0">Cloud Run</text>
+  <text x="655" y="560" text-anchor="middle" font-size="10" fill="#86efac">us-central1</text>
+  <text x="655" y="574" text-anchor="middle" font-size="10" fill="#86efac">min:1 max:10 instances</text>
+
+  <!-- Secret Manager -->
+  <rect x="735" y="522" width="130" height="60" rx="8" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1"/>
+  <text x="800" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#c4b5fd">Secret Manager</text>
+  <text x="800" y="560" text-anchor="middle" font-size="10" fill="#a78bfa">GEMINI_API_KEY</text>
+  <text x="800" y="574" text-anchor="middle" font-size="10" fill="#a78bfa">encrypted at rest</text>
+
+  <!-- GCR -->
+  <rect x="880" y="522" width="75" height="60" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="917" y="544" text-anchor="middle" font-size="11" font-weight="bold" fill="#bbf7d0">GCR</text>
+  <text x="917" y="560" text-anchor="middle" font-size="10" fill="#86efac">Container</text>
+  <text x="917" y="574" text-anchor="middle" font-size="10" fill="#86efac">Registry</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- Data flow legend -->
+  <text x="50" y="622" font-size="11" font-weight="bold" fill="#94a3b8">Data Flow:</text>
+  <line x1="130" y1="618" x2="165" y2="618" stroke="#6366f1" stroke-width="2"/>
+  <polygon points="165,614 173,618 165,622" fill="#6366f1"/>
+  <polygon points="130,622 122,618 130,614" fill="#6366f1"/>
+  <text x="178" y="622" font-size="10" fill="#94a3b8">WebSocket (audio + video)</text>
+  <line x1="350" y1="618" x2="385" y2="618" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="385,614 393,618 385,622" fill="#f59e0b"/>
+  <polygon points="350,622 342,618 350,614" fill="#f59e0b"/>
+  <text x="398" y="622" font-size="10" fill="#94a3b8">Gemini Live API (gRPC/HTTPS)</text>
+  <line x1="590" y1="618" x2="625" y2="618" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="625,614 633,618 625,622" fill="#475569"/>
+  <text x="638" y="622" font-size="10" fill="#94a3b8">User input (mic/camera)</text>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- Scoring box -->
+  <rect x="280" y="455" width="480" height="28" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="520" y="474" text-anchor="middle" font-size="11" fill="#94a3b8">Scoring metrics: </text>
+  <text x="620" y="474" font-size="11" fill="#60a5fa">Confidence · Objection Handling · Clarity · Value Framing · Closing</text>
+</svg>
