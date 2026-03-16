@@ -1,12 +1,77 @@
 steps:
+  # ── Backend ──────────────────────────────────────────────
   - name: 'gcr.io/cloud-builders/docker'
+    id: 'build-backend'
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/salesarena-backend-prod:latest'
+      - 'gcr.io/$PROJECT_ID/salesarena-backend:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/salesarena-backend:latest'
       - '-f'
       - 'backend/Dockerfile'
       - 'backend'
 
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push-backend'
+    waitFor: ['build-backend']
+    args: ['push', '--all-tags', 'gcr.io/$PROJECT_ID/salesarena-backend']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'deploy-backend'
+    waitFor: ['push-backend']
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'salesarena-backend'
+      - '--image=gcr.io/$PROJECT_ID/salesarena-backend:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=GEMINI_API_KEY=$_GEMINI_API_KEY'
+      - '--port=8000'
+
+  # ── Frontend ─────────────────────────────────────────────
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'build-frontend'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/salesarena-frontend:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/salesarena-frontend:latest'
+      - '-f'
+      - 'frontend/Dockerfile'
+      - 'frontend'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push-frontend'
+    waitFor: ['build-frontend']
+    args: ['push', '--all-tags', 'gcr.io/$PROJECT_ID/salesarena-frontend']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'deploy-frontend'
+    waitFor: ['push-frontend', 'deploy-backend']
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'salesarena-frontend'
+      - '--image=gcr.io/$PROJECT_ID/salesarena-frontend:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=NEXT_PUBLIC_WS_URL=$_BACKEND_WS_URL'
+      - '--port=3000'
+
 images:
-  - 'gcr.io/$PROJECT_ID/salesarena-backend-prod:latest'
+  - 'gcr.io/$PROJECT_ID/salesarena-backend:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/salesarena-frontend:$COMMIT_SHA'
+
+substitutions:
+  _GEMINI_API_KEY: ''
+  _BACKEND_WS_URL: ''
+
+options:
+  logging: CLOUD_LOGGING_ONLY
