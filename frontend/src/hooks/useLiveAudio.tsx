@@ -15,7 +15,7 @@ export function useLiveAudio(personaId: string, isSessionActive: boolean) {
 
   const connect = useCallback(async () => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8000";
+      const baseUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8001";
       const wsUrl = `${baseUrl}/ws/arena/${personaId}`;
       wsRef.current = new WebSocket(wsUrl);
       wsRef.current.binaryType = "arraybuffer";
@@ -30,6 +30,9 @@ export function useLiveAudio(personaId: string, isSessionActive: boolean) {
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
           streamRef.current = stream;
           setMediaStream(stream);
+
+          // Guard: cleanup() may have nulled audioContextRef while getUserMedia was awaiting
+          if (!audioContextRef.current) return;
 
           const source = audioContextRef.current.createMediaStreamSource(stream);
           
