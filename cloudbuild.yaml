@@ -1,0 +1,12 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/salesarena-backend-prod:latest'
+      - '-f'
+      - 'backend/Dockerfile'
+      - 'backend'
+
+images:
+  - 'gcr.io/$PROJECT_ID/salesarena-backend-prod:latest'
