@@ -1,5 +1,15 @@
 # SalesArena AI
 
+## 🚀 Live Deployment
+
+| | URL |
+|---|---|
+| **Frontend** | https://salesarena-frontend-4053352533.us-central1.run.app |
+| **Backend API** | https://salesarena-backend-prod-4053352533.us-central1.run.app |
+| **API Docs** | https://salesarena-backend-prod-4053352533.us-central1.run.app/docs |
+
+---
+
 A real-time AI sales coaching platform that role-plays as a tough buyer, interrupts like a real prospect, analyzes your responses, and trains you to handle objections confidently.
 
 ## What It Does
