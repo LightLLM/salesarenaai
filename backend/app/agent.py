@@ -8,7 +8,7 @@ from app.personas import PERSONAS
 from app.tools import detect_objection, score_sales_skill
 
 api_key = os.environ.get("GEMINI_API_KEY")
-client = genai.Client() if api_key else genai.Client() # Assumes it will find it in env or default setup
+client = genai.Client(api_key=api_key)
 
 async def connect_to_gemini_live(websocket, persona_id):
     """Manages the bidirectional Live API stream."""

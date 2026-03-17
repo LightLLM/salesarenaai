@@ -100,19 +100,26 @@ export function useLiveAudio(personaId: string, isSessionActive: boolean) {
            return;
         }
 
-        // Binary audio data
-        const audioData = event.data;
+        // Binary audio data — Gemini Live returns raw 16-bit PCM at 24kHz
+        // decodeAudioData won't work on raw PCM; manually construct an AudioBuffer instead
+        const audioData = event.data as ArrayBuffer;
         if (audioContextRef.current && audioData.byteLength > 0) {
-           try {
-               await audioContextRef.current.decodeAudioData(audioData, (buffer) => {
-                 const source = audioContextRef.current!.createBufferSource();
-                 source.buffer = buffer;
-                 source.connect(audioContextRef.current!.destination);
-                 source.start();
-               });
-           } catch (e) {
-               console.error("Audio decode error:", e);
-           }
+          try {
+            const pcm16 = new Int16Array(audioData);
+            const float32 = new Float32Array(pcm16.length);
+            for (let i = 0; i < pcm16.length; i++) {
+              float32[i] = pcm16[i] / 0x8000;
+            }
+            const audioCtx = audioContextRef.current;
+            const buffer = audioCtx.createBuffer(1, float32.length, 24000);
+            buffer.copyToChannel(float32, 0);
+            const source = audioCtx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioCtx.destination);
+            source.start();
+          } catch (e) {
+            console.error("Audio playback error:", e);
+          }
         }
       };
 
